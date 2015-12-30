@@ -34,9 +34,9 @@ class SSHA512Hasher(object):
         return constant_time_compare(encoded, encoded_2)
 
     @staticmethod
-    def extract_salt(striped):
+    def extract_salt(stripped):
         try:
-            decoded = base64.b64decode(striped)
+            decoded = base64.b64decode(stripped)
             # we don't care how big salt is. everything after 64 is salt
             salt = decoded[64::]
         except Exception as err:
