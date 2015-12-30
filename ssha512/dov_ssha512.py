@@ -9,4 +9,4 @@ from os import urandom
 class DovecotSSHA512Hasher(ssha512.SSHA512Hasher):
     def __init__(self, salt=urandom(16)):
         super(DovecotSSHA512Hasher, self).__init__(salt=salt,
-                                                   prefix='{{SSHA512}}')
+                                                   prefix='{SSHA512}')
