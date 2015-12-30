@@ -31,7 +31,7 @@ if __name__ == '__main__':
     wrong_option = 'You entered an incorrect option!\nExiting......'
 
     try:
-        shahasher = setup_hasher(hash_type)
+        sha_hasher = setup_hasher(hash_type)
     except RuntimeError:
         print(wrong_option)
         exit(1)
@@ -39,9 +39,9 @@ if __name__ == '__main__':
     choice = input('Enter [a] for encode\n[b] for decode:\n')
     passwd = input('Enter a password:\n')
     if choice is 'a':
-        print(shahasher.encode(passwd))
+        print(sha_hasher.encode(passwd))
     elif choice is 'b':
-        verify_password(shahasher)
+        verify_password(sha_hasher)
     else:
         print(wrong_option)
         exit(1)
