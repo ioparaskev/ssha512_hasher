@@ -2,7 +2,7 @@
 # to Python 3 with some more additions (time compare, dialogs etc)
 # for Python 2.x use the above gist
 
-import ssha512.ssha512 as ssha512
+from . import ssha512
 from os import urandom
 
 
