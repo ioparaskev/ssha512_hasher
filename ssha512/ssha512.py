@@ -5,15 +5,10 @@ import os
 
 
 class SSHA512Hasher(object):
-    def __init__(self, salt=os.urandom(16), prefix=''):
-        self.salt = salt
+    def __init__(self, prefix=''):
         self.prefix = prefix
 
-    def encode(self, word, salt=None):
-        if not word:
-            raise RuntimeError('No word given to encode')
-        if not salt:
-            salt = self.salt
+    def encode(self, word, salt=os.urandom(16)):
         sha = sha512()
         word = word.encode('utf-8')
         sha.update(word)
@@ -22,7 +17,7 @@ class SSHA512Hasher(object):
 
         return "{}{}".format(self.prefix, ssha512.decode('utf-8'))
 
-    def verify(self, password, encoded):
+    def verify(self, word, encoded):
         stripped = encoded.replace(self.prefix, '')
         try:
             salt = self.extract_salt(stripped or encoded)
@@ -30,15 +25,12 @@ class SSHA512Hasher(object):
             print('An error occured: {0}'.format(err))
             return False
 
-        encoded_2 = self.encode(password, salt)
+        encoded_2 = self.encode(word, salt)
         return constant_time_compare(encoded, encoded_2)
 
     @staticmethod
-    def extract_salt(stripped):
-        try:
-            decoded = base64.b64decode(stripped)
-            # we don't care how big salt is. everything after 64 is salt
-            salt = decoded[64::]
-        except Exception as err:
-            raise RuntimeError('An exception was raised: {0}'.format(err))
+    def extract_salt(_hash):
+        decoded = base64.b64decode(_hash)
+        # we don't care how big salt is. everything after 64 is salt
+        salt = decoded[64::]
         return salt
