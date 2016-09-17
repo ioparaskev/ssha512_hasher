@@ -2,7 +2,7 @@ from hmac import compare_digest as constant_time_compare
 import base64
 from hashlib import sha512
 import os
-
+import binascii
 
 class SSHA512Hasher(object):
     def __init__(self, prefix=''):
@@ -21,7 +21,7 @@ class SSHA512Hasher(object):
         stripped = encoded.replace(self.prefix, '')
         try:
             salt = self.extract_salt(stripped or encoded)
-        except RuntimeError as err:
+        except (RuntimeError, binascii.Error) as err:
             print('An error occured: {0}'.format(err))
             return False
 
