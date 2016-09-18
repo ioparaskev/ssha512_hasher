@@ -1,0 +1,15 @@
+SSHA512 Hasher with Dovecot compatibility
+==============
+
+Overview
+--------
+
+Basic hasher and decoder for SSHA512 that supports Dovecot format
+
+Dependencies
+------------
+None
+
+HowTo Run
+------------
+Run run_hasher.py or import from the module that suits your needs
