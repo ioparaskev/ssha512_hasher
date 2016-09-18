@@ -12,7 +12,7 @@ setup(
     description="Simple SSHA512 hasher with Dovecot format support",
     license="GPL-3.0",
     url="https://github.com/ioparaskev/ssha512_hasher",
-    packages=['an_example_pypi_project', 'tests'],
+    packages=['ssha512'],
     long_description=read('README'),
     classifiers=[
         "Development Status :: 5 - Production/Stable",
